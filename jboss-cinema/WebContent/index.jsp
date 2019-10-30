@@ -9,6 +9,7 @@
 <body>
 <h1>Hello</h1>
 <form action="AfficherFilmServlet">
-<button type="submit">Rechercher</button>
+<button type="submit">Liste des films</button>
+</form>
 </body>
 </html>

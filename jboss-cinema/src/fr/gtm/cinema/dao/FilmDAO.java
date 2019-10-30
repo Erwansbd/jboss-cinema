@@ -1,11 +1,9 @@
 package fr.gtm.cinema.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 
 import fr.gtm.cinema.entities.Film;

@@ -2,7 +2,7 @@ package fr.gtm.cinema.dao;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+
 
 /**
  * 
