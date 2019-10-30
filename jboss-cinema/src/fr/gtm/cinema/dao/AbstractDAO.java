@@ -3,7 +3,6 @@ package fr.gtm.cinema.dao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
-
 /**
  * 
  * DAO abstrait
@@ -39,5 +38,5 @@ public abstract class AbstractDAO<E,ID> {
 	public void update(E entity) {
 		getEntityManager().merge(entity);
 	}
-
+	
 }
