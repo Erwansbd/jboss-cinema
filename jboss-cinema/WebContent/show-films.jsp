@@ -8,6 +8,7 @@
 <title>Liste des films</title>
 </head>
 <body>
+<h1>Liste de nos films</h1>
 <c:forEach items = "${films}" var="film">
 <div>Le film ${film.titre} a été réalisé par ${film.realisateur}, est sortie le ${film.dateSortie} et a une durée de ${film.duree } min.</div>
 </c:forEach>
