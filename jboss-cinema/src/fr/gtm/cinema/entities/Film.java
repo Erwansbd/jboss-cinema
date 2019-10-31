@@ -2,13 +2,17 @@ package fr.gtm.cinema.entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,9 +21,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapKey;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
+import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name="films")
@@ -33,13 +42,17 @@ public class Film {
 	private String realisateur;
 	@Column(name="date_sortie")
 	private LocalDate dateSortie;
+	@Min(1)
 	private int duree;	// durée en minutes;
-	
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@DecimalMin("1.0")
+	private double prixHT;
+
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="film_acteur",
-			joinColumns = @JoinColumn(name="fk_film"),
-			inverseJoinColumns = @JoinColumn(name="fk_acteur"))
-	private List<Acteur> acteurs = new ArrayList<Acteur>();
+				joinColumns = @JoinColumn(name="fk_film"),
+				inverseJoinColumns = @JoinColumn(name="fk_acteur"))
+	private Map<Role, Acteur> roles = new HashMap<Role, Acteur>();
 
 	public long getId() {
 		return id;
@@ -81,14 +94,24 @@ public class Film {
 		this.duree = duree;
 	}
 
-	public List<Acteur> getActeurs() {
-		return acteurs;
+	public double getPrixHT() {
+		return prixHT;
 	}
 
-	public void setActeurs(List<Acteur> acteurs) {
-		this.acteurs = acteurs;
+	public void setPrixHT(double prixHT) {
+		this.prixHT = prixHT;
 	}
 
+	public Map<Role, Acteur> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Map<Role, Acteur> roles) {
+		this.roles = roles;
+	}
 	
+	public void add(Role role,Acteur acteur) {
+		roles.put(role, acteur);
+	}
 	
 }
