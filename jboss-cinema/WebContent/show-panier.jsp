@@ -10,7 +10,7 @@
 <body>
 <h3>${cpt} articles - (${prix}€)</h3>
 <c:forEach items = "${films}" var="film">
-<div>Le film ${film.titre} a été réalisé par ${film.realisateur}, est sortie le ${film.dateSortie} et a une durée de ${film.duree} min.</div>
+<div>Le film ${film.titre} a été réalisé par ${film.realisateur}, est sortie le ${film.dateSortie} et a une durée de ${film.duree} min. <a href="RetirerFilmPanierServlet?id=${film.id }">Supprimer du panier</a></div>
 </c:forEach>
 <a href="index.jsp">Accueil</a>
 </body>
