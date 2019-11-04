@@ -31,7 +31,7 @@ public class AjouterAuPanierServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		Long identifiant = Long.parseLong(id);
 		FilmDTO filmdto = new FilmDTO(service.findById(identifiant));
-		panier.add(filmdto);
+		panier.addFilm(filmdto);
 		tchikita.info("Liste des films"+panier.getFilmsdto());
 		List<FilmDTO> filmsdto2 = panier.getFilmsdto();
 		tchikita.info("Liste des films"+filmsdto2.size());

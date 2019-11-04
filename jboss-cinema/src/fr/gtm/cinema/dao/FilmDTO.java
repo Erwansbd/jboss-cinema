@@ -82,4 +82,54 @@ public class FilmDTO implements Serializable{
 	public void setPrixHT(double prixHT) {
 		this.prixHT = prixHT;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateSortie == null) ? 0 : dateSortie.hashCode());
+		result = prime * result + duree;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		long temp;
+		temp = Double.doubleToLongBits(prixHT);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((realisateur == null) ? 0 : realisateur.hashCode());
+		result = prime * result + ((titre == null) ? 0 : titre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FilmDTO other = (FilmDTO) obj;
+		if (dateSortie == null) {
+			if (other.dateSortie != null)
+				return false;
+		} else if (!dateSortie.equals(other.dateSortie))
+			return false;
+		if (duree != other.duree)
+			return false;
+		if (id != other.id)
+			return false;
+		if (Double.doubleToLongBits(prixHT) != Double.doubleToLongBits(other.prixHT))
+			return false;
+		if (realisateur == null) {
+			if (other.realisateur != null)
+				return false;
+		} else if (!realisateur.equals(other.realisateur))
+			return false;
+		if (titre == null) {
+			if (other.titre != null)
+				return false;
+		} else if (!titre.equals(other.titre))
+			return false;
+		return true;
+	}
+	
+	
 }

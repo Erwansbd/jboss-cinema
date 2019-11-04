@@ -22,7 +22,6 @@ public class Panier implements Serializable{
 	}
 	
 	public Panier(List<FilmDTO> filmsdto) {
-		super();
 		this.filmsdto = filmsdto;
 	}
 	
@@ -42,11 +41,11 @@ public class Panier implements Serializable{
 		this.filmsdto = filmsdto;
 	}
 	
-	public void add(FilmDTO filmdto) {
+	public void addFilm(FilmDTO filmdto) {
 		filmsdto.add(filmdto);
 	}
 	
-	public void remove(FilmDTO filmdto) {
+	public void removeFilm(FilmDTO filmdto) {
 		filmsdto.remove(filmdto);
 	}
 	

@@ -27,16 +27,14 @@ public class RetirerFilmPanierServlet extends HttpServlet {
     public static final Logger tchikita = Logger.getLogger("Cinema");
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String page = "/AfficherPanierServlet";
 		String id = request.getParameter("id");
 		Long identifiant = Long.parseLong(id);
-		FilmDTO filmdto = new FilmDTO(service.findById(identifiant));
-		panier.remove(filmdto);
-		List<FilmDTO> filmsdto2 = panier.getFilmsdto();
-		tchikita.info("Liste des films"+filmsdto2.size());
-		request.setAttribute("filmsdto", filmsdto2);
-		String page = "/AfficherFilmServlet";
+		FilmDTO f = new FilmDTO(service.findById(identifiant));
+		panier.removeFilm(f);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(page);
 		rd.forward(request, response);
+
 	}
 
 
