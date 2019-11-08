@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -47,9 +48,12 @@ public class ValiderPanierServlet extends HttpServlet {
 
 		// Create the email message
 		HtmlEmail email = new HtmlEmail();
-		email.setHostName("bovoyages.net");
+		email.setHostName("smtp.gmail.com");
+		email.setSmtpPort(465);
+		email.setAuthenticator(new DefaultAuthenticator("erwansbd@gmail.com", "Soube_stick"));
+		email.setSSLOnConnect(true);
 		email.addTo(request.getParameter("email"));
-		email.setFrom("erwan@bovoyages.net");
+		email.setFrom("erwansbd@gmail.com");
 		email.setSubject("Test mail");
 
 		// set the html message
@@ -59,6 +63,7 @@ public class ValiderPanierServlet extends HttpServlet {
 		email.setTextMsg("Your email client does not support HTML messages");
 
 		// send the email
+		email.setCharset("UTF-8");
 		email.send();
 		tchikita.info("Votre mail a été envoyé");
 		
